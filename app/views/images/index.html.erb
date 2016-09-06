@@ -1,0 +1,20 @@
+
+
+<%= link_to "Upload Image", image_path %>
+<br>
+<% @images.each do |image| %>
+<div class = "image_div">
+ <a href= "<%= edit_image_path(image.id) %>"> <img class = "index" src = "<%= image.file.url %>"> </a>
+ </div>
+
+<% end %>
+<br>
+<p>
+ <% if @offset > 0 %>
+ 	<%= link_to "Previous", images_page_path(@offset-1) %>
+ <% end %>
+
+ <% if @images.length >= 5 %>
+ 	<%= link_to "Next", images_page_path(@offset+1) %>
+ <% end %> 
+</p>

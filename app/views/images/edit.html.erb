@@ -1,0 +1,46 @@
+<style>
+button{background-color:#009933;}
+</style>
+<h1>Name:<%= @image.name %></h1>
+<img class = "edit" src = "<%= @image.file.url %>">
+
+<%= form_tag do %>
+<% if @tags and @tags.length >0 %>
+	<p>Tags:
+	<% for t in @tags %>
+		<div class = "tag"><div  onclick="showtaginfo('<%= t.name %>');"><%= t.name %> (<%= t.score %>)</div> <div class = "tag_rate" id = "<%= t.name %>_rate"><%= link_to("Vote Up", rate_tag_path(t.id, 1)) %> <%= link_to("Vote Down", rate_tag_path(t.id, -1)) %></div></div>
+	<% end %>
+	</p>
+<% end %>
+	<p>
+	<% if @rating == 1 %>
+		<%= submit_tag("Like", class: "like rating selected") %>
+		<%= submit_tag("Dislike", class: "dislike rating") %>
+	<% elsif @rating == -1 %>
+		<%= submit_tag("Like", class: "like rating") %>
+		<%= submit_tag("Dislike", class: "dislike rating selected") %>
+	<% else %>
+		<%= submit_tag("Like", class: "like rating") %>
+		<%= submit_tag("Dislike", class: "dislike rating") %>
+	<% end %>
+	</p>
+	<p> Enter your tags for this image, seperated by commas</p>
+    <%= text_area_tag(:tags) %>
+  <%= submit_tag("Tag this image!") %>
+<% end %>
+
+
+<%= link_to "return", images_path %>
+
+<script>
+function showtaginfo(tag){
+	console.log(tag);
+	console.log(document.getElementById(tag+"_rate").style.display);
+	if(document.getElementById(tag+"_rate").style.display == "block"){
+		document.getElementById(tag+"_rate").style.display = "none"
+	}
+	else{
+		document.getElementById(tag+"_rate").style.display = "block"
+	}
+};
+</script>

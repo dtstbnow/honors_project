@@ -1,0 +1,8 @@
+
+<h1>Your favorited Images</h1>
+<br>
+<% @images.each do |image_fav| %>
+<div class = "image_div">
+ <a href= "<%= edit_image_path(image_fav.image.id) %>"> <img class = "index" src = "<%= image_fav.image.file.url %>"> </a>
+ </div>
+<% end %>

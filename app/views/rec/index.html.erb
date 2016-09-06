@@ -1,0 +1,9 @@
+<%= link_to "Upload Image", image_path %>
+<br>
+<% @images.each do |image| %>
+<div class = "image_div">
+ <a href= "<%= edit_image_path(image.id) %>"> <img class = "index" src = "<%= image.file.url %>"> </a>
+ </div>
+<% end %>
+
+<%= link_to "return",images_path %>

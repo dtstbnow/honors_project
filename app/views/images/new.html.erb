@@ -1,0 +1,10 @@
+<%= form_for @image, url: 'new', html: { multipart: true } do |f| %>
+  <p>
+
+    Name:<%= f.text_field :name %>
+    <br>
+    Upload<%= f.file_field :file %>
+    <br>
+    <%= f.submit %>
+  </p>
+<% end %>
